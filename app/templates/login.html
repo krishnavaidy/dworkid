@@ -21,18 +21,18 @@
     <div clas="row">
 	<div class="col-md-4 col-sm-4 col-xs-12"></div>
 	<div class="col-md-4 col-sm-4 col-xs-12">
-	    <form class="form-container" method="POST" action="/submitLogin">
+	    <form class="form-container" id="formLogin" method="POST" action="/submitLogin">
 		<h1>Log In</h1>
 		<div class="form-group">
 		    <label for="exampleInputEmail1">Email</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+		    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
 		</div>
 		<div class="form-group">
 		    <label for="exampleInputPassword1">Password</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+		    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 		</div>
 		</br>
-		<button type="submit" class="btn btn-success btn-block">Log In</button>
+		<button id="submitLogin" class="btn btn-success btn-block">Log In</button>
 		</br>
 		<a id="reg" href="/signUp">Create Account</a>
 	    </form>
@@ -40,4 +40,26 @@
 	<div class="col-md-4 col-sm-4 col-xs-12"></div>
     </div> 
 </div>
+<script>
+$(function () {
+        jQuery('#submitLogin').click(function() {
+	    var data = {};
+	    for(let input of $('#formLogin').find(':input')){
+		data[input.getAttribute('name')] = input.getAttribute('value');
+	    }
+
+	    jQuery.ajax({
+		url: '/submitLogin',
+		method: 'POST',
+		data: data,
+		success: function(_data){
+		    data = _data;
+		},
+		error: function(){
+		    data = [];
+		}, 
+	    }); 
+        });
+});
+</script>
 {% endblock %}

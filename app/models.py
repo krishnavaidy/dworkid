@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from flask_mongoengine import MongoEngine, Document
+from views import db
 
 class User(UserMixin, db.Document):
     meta = {'collection': 'dworkid'}

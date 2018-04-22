@@ -24,13 +24,20 @@
 	</div>
     <script>
     $(function () {
-        var user = jQuery.session.get('logged_in');
-        if(user){
-            jQuery('#logged_in').append('Logged in as ' + jQuery.session.get('user'));
-        }
-        else {
-            jQuery('#logged_in').append('Not logged in');
-        }
+	    jQuery.ajax({
+	      url: '/userInfo',
+	      method: 'GET',
+	      success: function(data){
+		console.log(data);
+		//data = JSON.parse(data);
+		if(data.logged_in){
+            	jQuery('#logged_in').append('Logged in as ' + data.email);
+		}
+		else{
+            	jQuery('#logged_in').append('Not logged in');
+		}
+		},
+	    });
     })
     </script
     </body>
