@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+	{% block head %}
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="css/login.css" type="text/css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+	<script src="../static/jquery.session.js"></script> 
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>{% block title %}{% endblock %} - DWorkID</title> 
+	{% endblock %}
+    </head>
+    <body>
+	<div id="content">
+        <div id="logged_in"> </div>
+	    {% block content %}{% endblock %}</div>
+	<div id="footer">
+	    {% block footer %}
+	    &copy; Copyright 2018 by DWorkID.
+	    {% endblock %}
+	</div>
+    <script>
+    $(function () {
+        var user = jQuery.session.get('logged_in');
+        if(user){
+            jQuery('#logged_in').append('Logged in as ' + jQuery.session.get('user'));
+        }
+        else {
+            jQuery('#logged_in').append('Not logged in');
+        }
+    })
+    </script
+    </body>
+</html>

@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>DWorkID</title>
-        <link rel="stylesheet" type="text/css" href="./styles.css">
-    </head>
-    <body>
-        <h1>Welcome to DWorkID2323</h1>
-    </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+.important { color: #336699; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="header">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">About</a></li>
+            <li role="presentation"><a href="/login">Login</a></li>
+            <li role="presentation"><a href="/exp">Experience</a></li>
+            <li role="presentation"><a href="/verify">Verify</a></li>
+        </ul>
+    </nav>
+</div> 
+<br/>
+<h1>Welcome to DWorkID2323</h1>
+{% endblock %}
